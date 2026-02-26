@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Dreamscape (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Dreamscape (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
