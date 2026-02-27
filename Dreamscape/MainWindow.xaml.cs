@@ -12,7 +12,8 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-
+using Dreamscape.Data;
+using Dreamscape.Pages;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -26,6 +27,16 @@ namespace Dreamscape
         public MainWindow()
         {
             InitializeComponent();
+
+            using var db = new AppDbContext();
+
+            db.Database.EnsureDeleted();
+            db.Database.EnsureCreated();
+
+
+
+            MainFrame.Navigate(typeof(LoginPage));
         }
+
     }
 }
