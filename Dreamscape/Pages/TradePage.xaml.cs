@@ -61,5 +61,11 @@ public sealed partial class TradePage : Page
 
         db.Trades.Add(trade);
         db.SaveChanges();
+
+    }
+    private void Logout_Click(object sender, RoutedEventArgs e)
+    {
+
+        Frame.Navigate(typeof(HomePage));
     }
 }

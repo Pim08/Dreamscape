@@ -25,7 +25,12 @@
                            FontSize="26"
                            FontWeight="SemiBold"
                            CharacterSpacing="200"/>
-
+                <Button Content="Home"
+        Click="Logout_Click"
+        Height="50"
+        Background="#e5e5e5"
+        Foreground="Black"
+        CornerRadius="12"/>
                 <ComboBox x:Name="UserCombo"
                           Header="Select Player"/>
 

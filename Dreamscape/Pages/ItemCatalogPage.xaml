@@ -29,6 +29,13 @@
                            FontSize="28"
                            FontWeight="SemiBold"
                            CharacterSpacing="200"/>
+                <Button Content="Home"
+        Click="Logout_Click"
+        Height="50"
+        Background="#e5e5e5"
+        Foreground="Black"
+        CornerRadius="12"/>
+
 
                 <ListView x:Name="ItemList">
 

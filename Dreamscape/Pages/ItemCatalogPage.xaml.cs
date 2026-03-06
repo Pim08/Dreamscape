@@ -42,4 +42,9 @@ public sealed partial class ItemCatalogPage : Page
 
         ItemList.ItemsSource = db.Items.ToList();
     }
+    private void Logout_Click(object sender, RoutedEventArgs e)
+    {
+
+        Frame.Navigate(typeof(HomePage));
+    }
 }
