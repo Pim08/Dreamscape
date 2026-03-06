@@ -15,8 +15,10 @@
   <ItemGroup>
     <None Remove="Pages\DashboardPage.xaml" />
     <None Remove="Pages\HomePage.xaml" />
+    <None Remove="Pages\ItemCatalogPage.xaml" />
     <None Remove="Pages\LoginPage.xaml" />
     <None Remove="Pages\RegistratiePage.xaml" />
+    <None Remove="Pages\TradePage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,6 +50,16 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql.Design" Version="1.1.2" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\TradePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\ItemCatalogPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\RegistratiePage.xaml">

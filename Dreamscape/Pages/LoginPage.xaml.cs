@@ -83,9 +83,24 @@ namespace Dreamscape.Pages
                     return;
                 }
 
-                // 🔐 Password hash check
-                bool passwordCorrect =
-                    BCrypt.Net.BCrypt.Verify(enteredPassword, user.password_hash);
+                // 🔐 Password hash check with migration support
+                bool passwordCorrect = false;
+                bool needsRehash = false;
+                
+                // Check if password_hash is a BCrypt hash (starts with $2a$, $2b$, or $2y$)
+                if (user.password_hash.StartsWith("$2a$") || 
+                    user.password_hash.StartsWith("$2b$") || 
+                    user.password_hash.StartsWith("$2y$"))
+                {
+                    // It's a BCrypt hash, verify normally
+                    passwordCorrect = BCrypt.Net.BCrypt.Verify(enteredPassword, user.password_hash);
+                }
+                else
+                {
+                    // It's plain text (legacy data) - compare directly and mark for rehashing
+                    passwordCorrect = (enteredPassword == user.password_hash);
+                    needsRehash = true;
+                }
 
                 if (!passwordCorrect)
                 {
@@ -93,6 +108,13 @@ namespace Dreamscape.Pages
                     ShowError("Incorrect password");
                     PasswordBox.Password = "";
                     return;
+                }
+
+                // If password was stored as plain text, rehash it now
+                if (needsRehash)
+                {
+                    user.password_hash = BCrypt.Net.BCrypt.HashPassword(enteredPassword);
+                    db.SaveChanges();
                 }
 
                 // ✅ Login success

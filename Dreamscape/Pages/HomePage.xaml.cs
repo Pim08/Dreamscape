@@ -16,15 +16,30 @@ using Microsoft.UI.Xaml.Navigation;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace Dreamscape.Pages;
-
-/// <summary>
-/// An empty page that can be used on its own or navigated to within a Frame.
-/// </summary>
-public sealed partial class HomePage : Page
+namespace Dreamscape.Pages
 {
-    public HomePage()
+    public sealed partial class HomePage : Page
     {
-        InitializeComponent();
+        public HomePage()
+        {
+            this.InitializeComponent();
+        }
+
+        private void Catalog_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(ItemCatalogPage));
+        }
+
+        private void Trade_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(TradePage));
+        }
+
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+           
+            Frame.Navigate(typeof(LoginPage));
+        }
     }
 }
