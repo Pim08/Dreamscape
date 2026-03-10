@@ -66,6 +66,13 @@
                         CornerRadius="12"
                         BorderBrush="#dddddd"/>
 
+                <Button Content="INVENTORY"
+                        Click="Inventory_Click"
+                        Height="55"
+                        Background="#f0f0f0"
+                        Foreground="Black"
+                        CornerRadius="12"
+                        BorderBrush="#dddddd"/>
 
                 <Button Content="LOGOUT"
                         Click="Logout_Click"

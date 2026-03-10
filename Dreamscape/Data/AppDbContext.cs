@@ -14,6 +14,8 @@ namespace Dreamscape.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Trade> Trades { get; set; }
+
+        public DbSet<InventoryItem> InventoryItems { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseMySql(
@@ -42,6 +44,19 @@ namespace Dreamscape.Data
                 new Item { Id = 106, Naam = "Helende Ring", Beschrijving = "Ring die gezondheid herstelt.", Type = "Accessoire", Zeldzaamheid = "Zeldzaam", Kracht = 10, Snelheid = 5, Duurzaamheid = 100, MagischeEigenschap = "+5 HP per seconde" },
                 new Item { Id = 107, Naam = "Demonen Harnas", Beschrijving = "Duister harnas met enorme kracht.", Type = "Armor", Zeldzaamheid = "Legendarisch", Kracht = 75, Snelheid = 50, Duurzaamheid = 95, MagischeEigenschap = "Absorbeert 20% schade" }
             );
+            modelBuilder.Entity<InventoryItem>().HasData(
+
+    new InventoryItem { Id = 1, UserId = 1, ItemId = 101, Quantity = 1 },
+    new InventoryItem { Id = 2, UserId = 1, ItemId = 106, Quantity = 2 },
+
+    new InventoryItem { Id = 3, UserId = 2, ItemId = 102, Quantity = 1 },
+
+    new InventoryItem { Id = 4, UserId = 3, ItemId = 104, Quantity = 1 },
+
+    new InventoryItem { Id = 5, UserId = 5, ItemId = 105, Quantity = 1 }
+
+);
         }
+
     }
 }

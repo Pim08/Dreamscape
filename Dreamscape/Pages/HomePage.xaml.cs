@@ -35,6 +35,10 @@ namespace Dreamscape.Pages
             Frame.Navigate(typeof(TradePage));
         }
 
+        private void Inventory_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(InvetoryPage));
+        }
 
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
