@@ -29,6 +29,7 @@ namespace Dreamscape.Pages;
 /// </summary>
 public sealed partial class ItemCatalogPage : Page
 {
+    private List<Item> _allItems;
 
     public ItemCatalogPage()
     {
@@ -39,12 +40,34 @@ public sealed partial class ItemCatalogPage : Page
     private void LoadItems()
     {
         using var db = new AppDbContext();
-
-        ItemList.ItemsSource = db.Items.ToList();
+        _allItems = db.Items.ToList();
+        ItemList.ItemsSource = _allItems;
     }
+
+    private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        var searchText = SearchBox.Text.ToLower().Trim();
+
+        if (string.IsNullOrEmpty(searchText))
+        {
+            ItemList.ItemsSource = _allItems;
+        }
+        else
+        {
+            var filteredItems = _allItems.Where(item =>
+                item.Naam?.ToLower().Contains(searchText) == true ||
+                item.Beschrijving?.ToLower().Contains(searchText) == true ||
+                item.Type?.ToLower().Contains(searchText) == true ||
+                item.MagischeEigenschap?.ToLower().Contains(searchText) == true ||
+                item.Zeldzaamheid?.ToLower().Contains(searchText) == true
+            ).ToList();
+
+            ItemList.ItemsSource = filteredItems;
+        }
+    }
+
     private void Logout_Click(object sender, RoutedEventArgs e)
     {
-
         Frame.Navigate(typeof(HomePage));
     }
 }

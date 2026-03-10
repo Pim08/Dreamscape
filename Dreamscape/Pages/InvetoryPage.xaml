@@ -30,6 +30,43 @@
                            FontWeight="SemiBold"
                            CharacterSpacing="200"/>
 
+                <!-- Fire Search Box -->
+                <Border Background="#f8f8f8"
+                        CornerRadius="15"
+                        BorderBrush="#ddd"
+                        BorderThickness="2"
+                        Padding="15,10">
+                    
+                    <Border.Shadow>
+                        <ThemeShadow/>
+                    </Border.Shadow>
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <!-- Search Icon -->
+                        <FontIcon Grid.Column="0"
+                                  Glyph="&#xE721;"
+                                  FontSize="20"
+                                  Foreground="#666"
+                                  Margin="0,0,12,0"
+                                  VerticalAlignment="Center"/>
+                        
+                        <!-- Search TextBox -->
+                        <TextBox Grid.Column="1"
+                                 x:Name="SearchBox"
+                                 PlaceholderText="Search your inventory by item name or description..."
+                                 TextChanged="SearchBox_TextChanged"
+                                 BorderThickness="0"
+                                 Background="Transparent"
+                                 FontSize="15"
+                                 VerticalAlignment="Center"/>
+                    </Grid>
+                </Border>
+
                 <ListView x:Name="InventoryList"
 
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"

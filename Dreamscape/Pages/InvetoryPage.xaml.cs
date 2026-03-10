@@ -22,6 +22,7 @@ namespace Dreamscape.Pages
 {
     public sealed partial class InvetoryPage : Page
     {
+        private List<InventoryItem> _allInventoryItems;
 
         public InvetoryPage()
         {
@@ -38,7 +39,6 @@ namespace Dreamscape.Pages
 
         private void LoadInventory()
         {
-
             using var db = new AppDbContext();
 
             var items = db.InventoryItems
@@ -46,8 +46,28 @@ namespace Dreamscape.Pages
                 .Where(i => i.UserId == User.LoggedInUser.Id)
                 .ToList();
 
-            InventoryList.ItemsSource = items;
+            _allInventoryItems = items;
+            InventoryList.ItemsSource = _allInventoryItems;
+        }
 
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var searchText = SearchBox.Text.ToLower().Trim();
+
+            if (string.IsNullOrEmpty(searchText))
+            {
+                InventoryList.ItemsSource = _allInventoryItems;
+            }
+            else
+            {
+                var filteredItems = _allInventoryItems.Where(invItem =>
+                    invItem.Item?.Naam?.ToLower().Contains(searchText) == true ||
+                    invItem.Item?.Beschrijving?.ToLower().Contains(searchText) == true ||
+                    invItem.Item?.Type?.ToLower().Contains(searchText) == true
+                ).ToList();
+
+                InventoryList.ItemsSource = filteredItems;
+            }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
