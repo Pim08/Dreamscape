@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Dreamscape.Pages.ProfilePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Dreamscape.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="#f5f5f5">
+
+        <Border Width="700"
+                Padding="50"
+                CornerRadius="20"
+                Background="White"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                BorderBrush="#e5e5e5"
+                BorderThickness="1">
+
+            <Border.Shadow>
+                <ThemeShadow/>
+            </Border.Shadow>
+
+            <StackPanel Spacing="25">
+
+                <!-- Title -->
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock Text="MY PROFILE"
+                               FontSize="30"
+                               FontWeight="SemiBold"
+                               CharacterSpacing="200"/>
+
+                    <TextBlock Text="VIEW AND UPDATE YOUR INFORMATION"
+                               FontSize="12"
+                               Foreground="#777"
+                               CharacterSpacing="150"
+                               HorizontalAlignment="Center"
+                               Margin="0,5,0,0"/>
+                </StackPanel>
+
+                <Rectangle Height="1" Fill="#eeeeee"/>
+
+                <!-- User Info Section -->
+                <StackPanel Spacing="20">
+                    
+                    <!-- Username (Read-only) -->
+                    <StackPanel>
+                        <TextBlock Text="USERNAME"
+                                   FontSize="12"
+                                   Foreground="#666"
+                                   CharacterSpacing="100"
+                                   Margin="0,0,0,5"/>
+                        <Border Background="#f8f8f8"
+                                CornerRadius="10"
+                                Padding="15"
+                                BorderBrush="#ddd"
+                                BorderThickness="1">
+                            <TextBlock x:Name="UsernameText"
+                                       FontSize="16"
+                                       Foreground="#333"/>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- Email (Editable) -->
+                    <StackPanel>
+                        <TextBlock Text="EMAIL ADDRESS"
+                                   FontSize="12"
+                                   Foreground="#666"
+                                   CharacterSpacing="100"
+                                   Margin="0,0,0,5"/>
+                        <TextBox x:Name="EmailTextBox"
+                                 FontSize="16"
+                                 Height="50"
+                                 CornerRadius="10"
+                                 Background="#ffffff"
+                                 BorderBrush="#ddd"
+                                 BorderThickness="1"
+                                 Padding="15,0"/>
+                    </StackPanel>
+
+                    <!-- Role (Read-only) -->
+                    <StackPanel>
+                        <TextBlock Text="ROLE"
+                                   FontSize="12"
+                                   Foreground="#666"
+                                   CharacterSpacing="100"
+                                   Margin="0,0,0,5"/>
+                        <Border Background="#f8f8f8"
+                                CornerRadius="10"
+                                Padding="15"
+                                BorderBrush="#ddd"
+                                BorderThickness="1">
+                            <TextBlock x:Name="RoleText"
+                                       FontSize="16"
+                                       Foreground="#333"/>
+                        </Border>
+                    </StackPanel>
+
+                </StackPanel>
+
+                <Rectangle Height="1" Fill="#eeeeee"/>
+
+                <!-- Password Change Section -->
+                <TextBlock Text="CHANGE PASSWORD"
+                           FontSize="14"
+                           FontWeight="SemiBold"
+                           CharacterSpacing="100"
+                           Foreground="#333"/>
+
+                <StackPanel Spacing="15">
+                    
+                    <!-- Current Password -->
+                    <StackPanel>
+                        <TextBlock Text="CURRENT PASSWORD"
+                                   FontSize="12"
+                                   Foreground="#666"
+                                   CharacterSpacing="100"
+                                   Margin="0,0,0,5"/>
+                        <PasswordBox x:Name="CurrentPasswordBox"
+                                     Height="50"
+                                     CornerRadius="10"
+                                     Background="#ffffff"
+                                     BorderBrush="#ddd"
+                                     BorderThickness="1"
+                                     Padding="15,0"/>
+                    </StackPanel>
+
+                    <!-- New Password -->
+                    <StackPanel>
+                        <TextBlock Text="NEW PASSWORD"
+                                   FontSize="12"
+                                   Foreground="#666"
+                                   CharacterSpacing="100"
+                                   Margin="0,0,0,5"/>
+                        <PasswordBox x:Name="NewPasswordBox"
+                                     Height="50"
+                                     CornerRadius="10"
+                                     Background="#ffffff"
+                                     BorderBrush="#ddd"
+                                     BorderThickness="1"
+                                     Padding="15,0"/>
+                    </StackPanel>
+
+                    <!-- Confirm New Password -->
+                    <StackPanel>
+                        <TextBlock Text="CONFIRM NEW PASSWORD"
+                                   FontSize="12"
+                                   Foreground="#666"
+                                   CharacterSpacing="100"
+                                   Margin="0,0,0,5"/>
+                        <PasswordBox x:Name="ConfirmPasswordBox"
+                                     Height="50"
+                                     CornerRadius="10"
+                                     Background="#ffffff"
+                                     BorderBrush="#ddd"
+                                     BorderThickness="1"
+                                     Padding="15,0"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+                <!-- Success/Error Messages -->
+                <Border x:Name="MessageBorder"
+                        Visibility="Collapsed"
+                        CornerRadius="10"
+                        Padding="15">
+                    <TextBlock x:Name="MessageText"
+                               FontSize="14"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"/>
+                </Border>
+
+                <!-- Loading Indicator -->
+                <ProgressRing x:Name="LoadingRing"
+                              Width="40"
+                              Height="40"
+                              IsActive="False"
+                              Visibility="Collapsed"
+                              HorizontalAlignment="Center"/>
+
+                <!-- Action Buttons -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0"
+                            Content="SAVE CHANGES"
+                            Click="SaveChanges_Click"
+                            Height="55"
+                            Background="Black"
+                            Foreground="White"
+                            CornerRadius="12"
+                            FontWeight="SemiBold"
+                            CharacterSpacing="100"
+                            HorizontalAlignment="Stretch"/>
+
+                    <Button Grid.Column="2"
+                            Content="BACK"
+                            Click="Back_Click"
+                            Height="55"
+                            Background="#e5e5e5"
+                            Foreground="Black"
+                            CornerRadius="12"
+                            FontWeight="SemiBold"
+                            CharacterSpacing="100"
+                            HorizontalAlignment="Stretch"/>
+                </Grid>
+
+            </StackPanel>
+
+        </Border>
+
+    </Grid>
+
+</Page>

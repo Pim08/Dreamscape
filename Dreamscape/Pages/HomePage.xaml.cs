@@ -40,6 +40,11 @@ namespace Dreamscape.Pages
             Frame.Navigate(typeof(InvetoryPage));
         }
 
+        private void Profile_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(ProfilePage));
+        }
+
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
            
