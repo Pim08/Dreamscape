@@ -32,13 +32,16 @@
         Foreground="Black"
         CornerRadius="12"/>
                 <ComboBox x:Name="UserCombo"
-                          Header="Select Player"/>
+                          Header="Select Player"
+                          DisplayMemberPath="username"/>
 
                 <ComboBox x:Name="ItemCombo"
-                          Header="Item you offer"/>
+                          Header="Item you offer"
+                          DisplayMemberPath="Naam"/>
 
                 <ComboBox x:Name="RequestCombo"
-                          Header="Item you want"/>
+                          Header="Item you want"
+                          DisplayMemberPath="Naam"/>
 
                 <Button Content="Send Trade"
                         Click="SendTrade_Click"
