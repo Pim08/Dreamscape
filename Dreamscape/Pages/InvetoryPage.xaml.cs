@@ -29,6 +29,13 @@ namespace Dreamscape.Pages
             LoadInventory();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            // Refresh inventory when navigating to this page
+            LoadInventory();
+        }
+
         private void LoadInventory()
         {
 

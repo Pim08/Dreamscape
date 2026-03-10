@@ -10,49 +10,164 @@
 
     <Grid Background="#f5f5f5">
 
-        <Border Width="500"
-                Padding="40"
-                CornerRadius="20"
-                Background="White"
-                BorderBrush="#e5e5e5"
-                BorderThickness="1"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel HorizontalAlignment="Center" 
+                        VerticalAlignment="Top"
+                        Margin="0,40,0,40"
+                        Spacing="30">
 
-            <StackPanel Spacing="20">
+                <!-- Notification Area -->
+                <InfoBar x:Name="NotificationBar"
+                         Visibility="Collapsed"
+                         IsClosable="True"
+                         Closed="NotificationBar_Closed"
+                         Width="500"/>
 
-                <TextBlock Text="SEND TRADE"
-                           FontSize="26"
-                           FontWeight="SemiBold"
-                           CharacterSpacing="200"/>
-                <Button Content="Home"
-        Click="Logout_Click"
-        Height="50"
-        Background="#e5e5e5"
-        Foreground="Black"
-        CornerRadius="12"/>
-                <ComboBox x:Name="UserCombo"
-                          Header="Select Player"
-                          DisplayMemberPath="username"/>
+                <!-- Send Trade Card -->
+                <Border Width="500"
+                        Padding="40"
+                        CornerRadius="20"
+                        Background="White"
+                        BorderBrush="#e5e5e5"
+                        BorderThickness="1">
 
-                <ComboBox x:Name="ItemCombo"
-                          Header="Item you offer"
-                          DisplayMemberPath="Naam"/>
+                    <StackPanel Spacing="20">
 
-                <ComboBox x:Name="RequestCombo"
-                          Header="Item you want"
-                          DisplayMemberPath="Naam"/>
+                        <TextBlock Text="SEND TRADE"
+                                   FontSize="26"
+                                   FontWeight="SemiBold"
+                                   CharacterSpacing="200"/>
+                        
+                        <Button Content="Home"
+                                Click="Logout_Click"
+                                Height="50"
+                                Background="#e5e5e5"
+                                Foreground="Black"
+                                CornerRadius="12"/>
+                        
+                        <ComboBox x:Name="UserCombo"
+                                  Header="Select Player"
+                                  DisplayMemberPath="username"
+                                  HorizontalAlignment="Stretch"/>
 
-                <Button Content="Send Trade"
-                        Click="SendTrade_Click"
-                        Height="45"
-                        Background="Black"
-                        Foreground="White"
-                        CornerRadius="10"/>
+                        <ComboBox x:Name="ItemCombo"
+                                  Header="Item you offer"
+                                  DisplayMemberPath="Naam"
+                                  HorizontalAlignment="Stretch"/>
+
+                        <ComboBox x:Name="RequestCombo"
+                                  Header="Item you want"
+                                  DisplayMemberPath="Naam"
+                                  HorizontalAlignment="Stretch"/>
+
+                        <Button Content="Send Trade"
+                                Click="SendTrade_Click"
+                                Height="45"
+                                Background="Black"
+                                Foreground="White"
+                                CornerRadius="10"
+                                HorizontalAlignment="Stretch"/>
+
+                    </StackPanel>
+
+                </Border>
+
+                <!-- Incoming Trades Card -->
+                <Border Width="500"
+                        Padding="40"
+                        CornerRadius="20"
+                        Background="White"
+                        BorderBrush="#e5e5e5"
+                        BorderThickness="1">
+
+                    <StackPanel Spacing="20">
+
+                        <TextBlock Text="INCOMING TRADES"
+                                   FontSize="26"
+                                   FontWeight="SemiBold"
+                                   CharacterSpacing="200"/>
+
+                        <ListView x:Name="IncomingTradesList"
+                                  SelectionMode="None"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Padding="20"
+                                            Margin="0,5"
+                                            CornerRadius="12"
+                                            Background="#fafafa"
+                                            BorderBrush="#e5e5e5"
+                                            BorderThickness="1">
+
+                                        <StackPanel Spacing="10">
+
+                                            <TextBlock FontSize="16"
+                                                       FontWeight="SemiBold">
+                                                <Run Text="From: "/>
+                                                <Run Text="{Binding FromUserName}"/>
+                                            </TextBlock>
+
+                                            <StackPanel Spacing="5">
+                                                <TextBlock Text="They offer:" 
+                                                           FontSize="12"
+                                                           Foreground="#666"/>
+                                                <TextBlock Text="{Binding OfferedItemName}"
+                                                           FontSize="14"
+                                                           FontWeight="SemiBold"/>
+                                            </StackPanel>
+
+                                            <StackPanel Spacing="5">
+                                                <TextBlock Text="They want:" 
+                                                           FontSize="12"
+                                                           Foreground="#666"/>
+                                                <TextBlock Text="{Binding RequestedItemName}"
+                                                           FontSize="14"
+                                                           FontWeight="SemiBold"/>
+                                            </StackPanel>
+
+                                            <StackPanel Orientation="Horizontal" 
+                                                        Spacing="10"
+                                                        Margin="0,10,0,0">
+                                                
+                                                <Button Content="Accept"
+                                                        Click="AcceptTrade_Click"
+                                                        Tag="{Binding TradeId}"
+                                                        Background="#28a745"
+                                                        Foreground="White"
+                                                        CornerRadius="8"
+                                                        Padding="20,8"/>
+
+                                                <Button Content="Reject"
+                                                        Click="RejectTrade_Click"
+                                                        Tag="{Binding TradeId}"
+                                                        Background="#dc3545"
+                                                        Foreground="White"
+                                                        CornerRadius="8"
+                                                        Padding="20,8"/>
+
+                                            </StackPanel>
+
+                                        </StackPanel>
+
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                        </ListView>
+
+                        <TextBlock x:Name="NoTradesMessage"
+                                   Text="No pending trades"
+                                   Foreground="#888"
+                                   HorizontalAlignment="Center"
+                                   Visibility="Collapsed"/>
+
+                    </StackPanel>
+
+                </Border>
 
             </StackPanel>
-
-        </Border>
+        </ScrollViewer>
 
     </Grid>
 
