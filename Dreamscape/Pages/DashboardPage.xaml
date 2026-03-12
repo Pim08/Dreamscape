@@ -8,7 +8,546 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid>
+    <Grid Background="#f5f5f5">
+        
+        <!-- Subtle luxury background pattern -->
+        <Grid>
+            <Rectangle Fill="#f5f5f5"/>
+            <Rectangle Fill="#000000" Opacity="0.02"/>
+        </Grid>
 
+        <!-- Main Card -->
+        <Border Width="1200"
+                Padding="50"
+                CornerRadius="20"
+                Background="White"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                BorderBrush="#e5e5e5"
+                BorderThickness="1"
+                MaxHeight="900">
+
+            <Border.Shadow>
+                <ThemeShadow/>
+            </Border.Shadow>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Header -->
+                <Grid Grid.Row="0" Margin="0,0,0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel>
+                        <TextBlock Text="DREAMSCAPE" 
+                                   FontSize="28" 
+                                   FontWeight="SemiBold" 
+                                   CharacterSpacing="200"/>
+                        <TextBlock Text="ADMIN DASHBOARD" 
+                                   FontSize="12" 
+                                   Foreground="#888888" 
+                                   CharacterSpacing="150"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10">
+                        <Button Content="PLAYER HOME" 
+                                Click="GoToPlayerHome_Click"
+                                Height="45"
+                                Background="#f0f0f0"
+                                Foreground="Black"
+                                CornerRadius="12"
+                                Padding="20,0"
+                                CharacterSpacing="100"
+                                BorderBrush="#dddddd"/>
+                        <Button Content="LOGOUT" 
+                                Click="Logout_Click"
+                                Height="45"
+                                Background="Black"
+                                Foreground="White"
+                                CornerRadius="12"
+                                Padding="20,0"
+                                CharacterSpacing="100"/>
+                    </StackPanel>
+                </Grid>
+
+                <Rectangle Grid.Row="0" 
+                           Height="1" 
+                           Fill="#eeeeee" 
+                           VerticalAlignment="Bottom"
+                           Margin="0,10,0,0"/>
+
+                <!-- Content -->
+                <Grid Grid.Row="1" Margin="0,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Navigation Menu -->
+                    <StackPanel Grid.Column="0" Margin="0,0,30,0" Spacing="8">
+                        <RadioButton x:Name="NavCreateUsers" 
+                                     Content="Create Users" 
+                                     GroupName="Nav"
+                                     IsChecked="True"
+                                     Checked="NavButton_Checked"
+                                     Height="40"
+                                     FontSize="14"
+                                     CharacterSpacing="80"/>
+                        <RadioButton x:Name="NavManageItems" 
+                                     Content="Manage Items" 
+                                     GroupName="Nav"
+                                     Checked="NavButton_Checked"
+                                     Height="40"
+                                     FontSize="14"
+                                     CharacterSpacing="80"/>
+                        <RadioButton x:Name="NavAssignItems" 
+                                     Content="Assign Items" 
+                                     GroupName="Nav"
+                                     Checked="NavButton_Checked"
+                                     Height="40"
+                                     FontSize="14"
+                                     CharacterSpacing="80"/>
+                        <RadioButton x:Name="NavItemStats" 
+                                     Content="Statistics" 
+                                     GroupName="Nav"
+                                     Checked="NavButton_Checked"
+                                     Height="40"
+                                     FontSize="14"
+                                     CharacterSpacing="80"/>
+                    </StackPanel>
+
+                    <!-- Content Area -->
+                    <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                        <Grid>
+                            <!-- Create Users Section -->
+                            <StackPanel x:Name="CreateUsersSection" Visibility="Visible" Spacing="20">
+                                <TextBlock Text="CREATE NEW USER ACCOUNT" 
+                                           FontSize="20" 
+                                           FontWeight="SemiBold"
+                                           CharacterSpacing="120"/>
+                                
+                                <Border Background="#fafafa" 
+                                        CornerRadius="12" 
+                                        Padding="25"
+                                        BorderBrush="#e5e5e5"
+                                        BorderThickness="1">
+                                    <StackPanel Spacing="18">
+                                        <StackPanel Spacing="6">
+                                            <TextBlock Text="USERNAME" FontSize="12" Foreground="#666666" CharacterSpacing="120"/>
+                                            <TextBox x:Name="NewUserUsername" 
+                                                     PlaceholderText="Enter username"
+                                                     Height="45"
+                                                     CornerRadius="10"
+                                                     Background="White"
+                                                     BorderBrush="#dddddd"
+                                                     Padding="15,0"/>
+                                        </StackPanel>
+                                        
+                                        <StackPanel Spacing="6">
+                                            <TextBlock Text="EMAIL ADDRESS" FontSize="12" Foreground="#666666" CharacterSpacing="120"/>
+                                            <TextBox x:Name="NewUserEmail" 
+                                                     PlaceholderText="Enter email"
+                                                     Height="45"
+                                                     CornerRadius="10"
+                                                     Background="White"
+                                                     BorderBrush="#dddddd"
+                                                     Padding="15,0"/>
+                                        </StackPanel>
+                                        
+                                        <StackPanel Spacing="6">
+                                            <TextBlock Text="PASSWORD" FontSize="12" Foreground="#666666" CharacterSpacing="120"/>
+                                            <PasswordBox x:Name="NewUserPassword" 
+                                                         PlaceholderText="Enter password"
+                                                         Height="45"
+                                                         CornerRadius="10"
+                                                         Background="White"
+                                                         BorderBrush="#dddddd"
+                                                         Padding="15,0"/>
+                                        </StackPanel>
+                                        
+                                        <StackPanel Spacing="6">
+                                            <TextBlock Text="ROLE" FontSize="12" Foreground="#666666" CharacterSpacing="120"/>
+                                            <ComboBox x:Name="NewUserRole" 
+                                                      SelectedIndex="0"
+                                                      Height="45"
+                                                      CornerRadius="10"
+                                                      Background="White"
+                                                      BorderBrush="#dddddd"
+                                                      HorizontalAlignment="Stretch">
+                                                <ComboBoxItem Content="Player" Tag="1"/>
+                                                <ComboBoxItem Content="Owner/Admin" Tag="2"/>
+                                            </ComboBox>
+                                        </StackPanel>
+                                        
+                                        <Button Content="CREATE USER" 
+                                                Click="CreateUser_Click"
+                                                Background="Black"
+                                                Foreground="White"
+                                                HorizontalAlignment="Stretch"
+                                                Height="50"
+                                                CornerRadius="12"
+                                                CharacterSpacing="100"
+                                                FontWeight="SemiBold"
+                                                Margin="0,10,0,0"/>
+                                        
+                                        <InfoBar x:Name="CreateUserMessage" 
+                                                 IsOpen="False" 
+                                                 IsClosable="True"/>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+
+                            <!-- Manage Items Section -->
+                            <StackPanel x:Name="ManageItemsSection" Visibility="Collapsed" Spacing="20">
+                                <TextBlock Text="MANAGE ITEMS" 
+                                           FontSize="20" 
+                                           FontWeight="SemiBold"
+                                           CharacterSpacing="120"/>
+                                
+                                <Border Background="#fafafa" 
+                                        CornerRadius="12" 
+                                        Padding="25"
+                                        BorderBrush="#e5e5e5"
+                                        BorderThickness="1">
+                                    <StackPanel Spacing="18">
+                                        <TextBox x:Name="ItemId" 
+                                                 Header="Item ID" 
+                                                 PlaceholderText="Auto-generated"
+                                                 IsReadOnly="True"
+                                                 Height="45"
+                                                 CornerRadius="10"
+                                                 Background="#f0f0f0"
+                                                 BorderBrush="#dddddd"/>
+                                        
+                                        <StackPanel Spacing="6">
+                                            <TextBlock Text="NAME" FontSize="12" Foreground="#666666" CharacterSpacing="120"/>
+                                            <TextBox x:Name="ItemNaam" 
+                                                     PlaceholderText="Enter item name"
+                                                     Height="45"
+                                                     CornerRadius="10"
+                                                     Background="White"
+                                                     BorderBrush="#dddddd"
+                                                     Padding="15,0"/>
+                                        </StackPanel>
+                                        
+                                        <StackPanel Spacing="6">
+                                            <TextBlock Text="DESCRIPTION" FontSize="12" Foreground="#666666" CharacterSpacing="120"/>
+                                            <TextBox x:Name="ItemBeschrijving" 
+                                                     PlaceholderText="Enter description"
+                                                     TextWrapping="Wrap"
+                                                     AcceptsReturn="True"
+                                                     Height="80"
+                                                     CornerRadius="10"
+                                                     Background="White"
+                                                     BorderBrush="#dddddd"
+                                                     Padding="15,10"/>
+                                        </StackPanel>
+                                        
+                                        <Grid ColumnSpacing="10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            
+                                            <StackPanel Spacing="6">
+                                                <TextBlock Text="TYPE" FontSize="12" Foreground="#666666" CharacterSpacing="120"/>
+                                                <ComboBox x:Name="ItemType" 
+                                                          SelectedIndex="0"
+                                                          Height="45"
+                                                          CornerRadius="10"
+                                                          Background="White"
+                                                          BorderBrush="#dddddd"
+                                                          HorizontalAlignment="Stretch">
+                                                    <ComboBoxItem Content="Wapen"/>
+                                                    <ComboBoxItem Content="Armor"/>
+                                                    <ComboBoxItem Content="Accessoire"/>
+                                                </ComboBox>
+                                            </StackPanel>
+                                            
+                                            <StackPanel Grid.Column="1" Spacing="6">
+                                                <TextBlock Text="RARITY" FontSize="12" Foreground="#666666" CharacterSpacing="120"/>
+                                                <ComboBox x:Name="ItemZeldzaamheid" 
+                                                          SelectedIndex="0"
+                                                          Height="45"
+                                                          CornerRadius="10"
+                                                          Background="White"
+                                                          BorderBrush="#dddddd"
+                                                          HorizontalAlignment="Stretch">
+                                                    <ComboBoxItem Content="Gewoon"/>
+                                                    <ComboBoxItem Content="Zeldzaam"/>
+                                                    <ComboBoxItem Content="Episch"/>
+                                                    <ComboBoxItem Content="Legendarisch"/>
+                                                </ComboBox>
+                                            </StackPanel>
+                                        </Grid>
+                                        
+                                        <Grid ColumnSpacing="10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <NumberBox x:Name="ItemKracht" Header="Power" Value="0" Minimum="0" Maximum="100" SpinButtonPlacementMode="Inline"/>
+                                            <NumberBox x:Name="ItemSnelheid" Header="Speed" Value="0" Minimum="0" Maximum="100" Grid.Column="1" SpinButtonPlacementMode="Inline"/>
+                                            <NumberBox x:Name="ItemDuurzaamheid" Header="Durability" Value="0" Minimum="0" Maximum="100" Grid.Column="2" SpinButtonPlacementMode="Inline"/>
+                                        </Grid>
+                                        
+                                        <StackPanel Spacing="6">
+                                            <TextBlock Text="MAGICAL PROPERTY" FontSize="12" Foreground="#666666" CharacterSpacing="120"/>
+                                            <TextBox x:Name="ItemMagischeEigenschap" 
+                                                     PlaceholderText="Enter magical property"
+                                                     Height="45"
+                                                     CornerRadius="10"
+                                                     Background="White"
+                                                     BorderBrush="#dddddd"
+                                                     Padding="15,0"/>
+                                        </StackPanel>
+                                        
+                                        <Grid ColumnSpacing="10" Margin="0,10,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Button Content="CREATE ITEM" 
+                                                    Click="CreateItem_Click"
+                                                    Background="Black"
+                                                    Foreground="White"
+                                                    Height="50"
+                                                    CornerRadius="12"
+                                                    CharacterSpacing="100"
+                                                    FontWeight="SemiBold"/>
+                                            <Button Grid.Column="1"
+                                                    Content="UPDATE ITEM" 
+                                                    Click="UpdateItem_Click"
+                                                    Background="#f0f0f0"
+                                                    Foreground="Black"
+                                                    Height="50"
+                                                    CornerRadius="12"
+                                                    CharacterSpacing="100"
+                                                    BorderBrush="#dddddd"/>
+                                        </Grid>
+                                        
+                                        <Grid ColumnSpacing="10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Button Content="DELETE ITEM" 
+                                                    Click="DeleteItem_Click"
+                                                    Background="#e5e5e5"
+                                                    Foreground="Black"
+                                                    Height="45"
+                                                    CornerRadius="12"
+                                                    CharacterSpacing="100"
+                                                    BorderBrush="#dddddd"/>
+                                            <Button Grid.Column="1"
+                                                    Content="CLEAR FORM" 
+                                                    Click="ClearItemForm_Click"
+                                                    Background="#e5e5e5"
+                                                    Foreground="Black"
+                                                    Height="45"
+                                                    CornerRadius="12"
+                                                    CharacterSpacing="100"
+                                                    BorderBrush="#dddddd"/>
+                                        </Grid>
+                                        
+                                        <InfoBar x:Name="ManageItemMessage" 
+                                                 IsOpen="False" 
+                                                 IsClosable="True"/>
+                                        
+                                        <!-- Items List -->
+                                        <TextBlock Text="EXISTING ITEMS" 
+                                                   FontSize="14" 
+                                                   FontWeight="SemiBold" 
+                                                   CharacterSpacing="120"
+                                                   Margin="0,20,0,0"/>
+                                        <ListView x:Name="ItemsList" 
+                                                  SelectionChanged="ItemsList_SelectionChanged"
+                                                  Height="250"
+                                                  BorderBrush="#e5e5e5"
+                                                  BorderThickness="1"
+                                                  CornerRadius="10"
+                                                  Background="White">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border Padding="15"
+                                                            Margin="5"
+                                                            CornerRadius="8"
+                                                            Background="#fafafa"
+                                                            BorderBrush="#e5e5e5"
+                                                            BorderThickness="1">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="60"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <TextBlock Text="{Binding Id}" FontWeight="Bold" FontSize="16"/>
+                                                            <StackPanel Grid.Column="1">
+                                                                <TextBlock Text="{Binding Naam}" FontWeight="SemiBold" FontSize="15"/>
+                                                                <TextBlock Text="{Binding Zeldzaamheid}" Foreground="#888" FontSize="12"/>
+                                                            </StackPanel>
+                                                        </Grid>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+
+                            <!-- Assign Items Section -->
+                            <StackPanel x:Name="AssignItemsSection" Visibility="Collapsed" Spacing="20">
+                                <TextBlock Text="ASSIGN ITEMS TO PLAYERS" 
+                                           FontSize="20" 
+                                           FontWeight="SemiBold"
+                                           CharacterSpacing="120"/>
+                                
+                                <Border Background="#fafafa" 
+                                        CornerRadius="12" 
+                                        Padding="25"
+                                        BorderBrush="#e5e5e5"
+                                        BorderThickness="1">
+                                    <StackPanel Spacing="18">
+                                        <StackPanel Spacing="6">
+                                            <TextBlock Text="SELECT PLAYER" FontSize="12" Foreground="#666666" CharacterSpacing="120"/>
+                                            <ComboBox x:Name="AssignUserCombo" 
+                                                      DisplayMemberPath="username"
+                                                      Height="45"
+                                                      CornerRadius="10"
+                                                      Background="White"
+                                                      BorderBrush="#dddddd"
+                                                      HorizontalAlignment="Stretch"/>
+                                        </StackPanel>
+                                        
+                                        <StackPanel Spacing="6">
+                                            <TextBlock Text="SELECT ITEM" FontSize="12" Foreground="#666666" CharacterSpacing="120"/>
+                                            <ComboBox x:Name="AssignItemCombo" 
+                                                      DisplayMemberPath="Naam"
+                                                      Height="45"
+                                                      CornerRadius="10"
+                                                      Background="White"
+                                                      BorderBrush="#dddddd"
+                                                      HorizontalAlignment="Stretch"/>
+                                        </StackPanel>
+                                        
+                                        <StackPanel Spacing="6">
+                                            <TextBlock Text="QUANTITY" FontSize="12" Foreground="#666666" CharacterSpacing="120"/>
+                                            <NumberBox x:Name="AssignQuantity" 
+                                                       Value="1" 
+                                                       Minimum="1" 
+                                                       Maximum="99"
+                                                       SpinButtonPlacementMode="Inline"/>
+                                        </StackPanel>
+                                        
+                                        <Button Content="ASSIGN ITEM" 
+                                                Click="AssignItem_Click"
+                                                Background="Black"
+                                                Foreground="White"
+                                                HorizontalAlignment="Stretch"
+                                                Height="50"
+                                                CornerRadius="12"
+                                                CharacterSpacing="100"
+                                                FontWeight="SemiBold"
+                                                Margin="0,10,0,0"/>
+                                        
+                                        <InfoBar x:Name="AssignItemMessage" 
+                                                 IsOpen="False" 
+                                                 IsClosable="True"/>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+
+                            <!-- Item Statistics Section -->
+                            <StackPanel x:Name="ItemStatsSection" Visibility="Collapsed" Spacing="20">
+                                <TextBlock Text="ITEM DISTRIBUTION STATISTICS" 
+                                           FontSize="20" 
+                                           FontWeight="SemiBold"
+                                           CharacterSpacing="120"/>
+                                
+                                <Border Background="#fafafa" 
+                                        CornerRadius="12" 
+                                        Padding="25"
+                                        BorderBrush="#e5e5e5"
+                                        BorderThickness="1">
+                                    <StackPanel Spacing="18">
+                                        <StackPanel Spacing="6">
+                                            <TextBlock Text="SELECT ITEM TO ANALYZE" FontSize="12" Foreground="#666666" CharacterSpacing="120"/>
+                                            <ComboBox x:Name="StatsItemCombo" 
+                                                      DisplayMemberPath="Naam"
+                                                      SelectionChanged="StatsItemCombo_SelectionChanged"
+                                                      Height="45"
+                                                      CornerRadius="10"
+                                                      Background="White"
+                                                      BorderBrush="#dddddd"
+                                                      HorizontalAlignment="Stretch"/>
+                                        </StackPanel>
+                    
+                                        <Border Background="White" 
+                                                CornerRadius="10" 
+                                                Padding="20"
+                                                BorderBrush="#e5e5e5"
+                                                BorderThickness="1">
+                                            <StackPanel Spacing="12">
+                                                <TextBlock x:Name="StatsItemName" 
+                                                           FontSize="18" 
+                                                           FontWeight="SemiBold"
+                                                           CharacterSpacing="100"/>
+                                                <TextBlock x:Name="StatsPlayerCount" 
+                                                           FontSize="14" 
+                                                           Foreground="#666666"/>
+                                                <TextBlock x:Name="StatsTotalQuantity" 
+                                                           FontSize="14" 
+                                                           Foreground="#666666"/>
+                                            </StackPanel>
+                                        </Border>
+                                        
+                                        <TextBlock Text="PLAYERS WITH THIS ITEM" 
+                                                   FontSize="14" 
+                                                   FontWeight="SemiBold" 
+                                                   CharacterSpacing="120"
+                                                   Margin="0,10,0,0"/>
+                                        <ListView x:Name="StatsPlayersList" 
+                                                  Height="250"
+                                                  BorderBrush="#e5e5e5"
+                                                  BorderThickness="1"
+                                                  CornerRadius="10"
+                                                  Background="White">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border Padding="15"
+                                                            Margin="5"
+                                                            CornerRadius="8"
+                                                            Background="#fafafa"
+                                                            BorderBrush="#e5e5e5"
+                                                            BorderThickness="1">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <TextBlock Text="{Binding Username}" FontWeight="SemiBold" FontSize="14"/>
+                                                            <TextBlock Grid.Column="1" FontWeight="Bold" FontSize="14">
+                                                                <Run Text="Qty: "/>
+                                                                <Run Text="{Binding Quantity}"/>
+                                                            </TextBlock>
+                                                        </Grid>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

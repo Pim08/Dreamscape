@@ -12,9 +12,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+using Dreamscape.Data;
 
 namespace Dreamscape.Pages
 {
@@ -23,6 +21,26 @@ namespace Dreamscape.Pages
         public HomePage()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            
+            // Show admin button only if logged in user is an owner
+            if (User.LoggedInUser != null && User.LoggedInUser.Role == User.ROLE_OWNER)
+            {
+                AdminDashboardButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                AdminDashboardButton.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void AdminDashboard_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(DashboardPage));
         }
 
         private void Catalog_Click(object sender, RoutedEventArgs e)
@@ -47,7 +65,7 @@ namespace Dreamscape.Pages
 
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
-           
+            User.LoggedInUser = null;
             Frame.Navigate(typeof(LoginPage));
         }
     }

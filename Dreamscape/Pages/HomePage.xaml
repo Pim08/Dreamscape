@@ -48,6 +48,18 @@
                 <Rectangle Height="1" Fill="#eeeeee"/>
 
                 <!-- Buttons -->
+                
+                <!-- Admin Dashboard Button (only visible for owners) -->
+                <Button x:Name="AdminDashboardButton"
+                        Content="ADMIN DASHBOARD"
+                        Click="AdminDashboard_Click"
+                        Height="55"
+                        Background="#FF9800"
+                        Foreground="White"
+                        CornerRadius="12"
+                        FontWeight="SemiBold"
+                        CharacterSpacing="100"
+                        Visibility="Collapsed"/>
 
                 <Button Content="ITEM CATALOG"
                         Click="Catalog_Click"
